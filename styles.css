@@ -1,0 +1,78 @@
+body{
+    display: grid;
+    grid-template-areas:
+    "header header hearder"
+    "cont cont cont"
+    "cont cont cont" 
+    "cont cont cont"
+    "footer footer footer";
+}
+h3{
+    grid-area: header;
+    justify-self: center;
+}
+h5{
+    grid-area: footer;
+    justify-self: center;
+}
+.book-shelf{
+    grid-area: cont;
+    justify-self: center;
+    height: 750px;
+    width: 50%;
+    display: grid;
+    grid-template-rows: 40% 10% 15% 15% 15% 5% ;
+    grid-template-areas: 
+    "cur cur cur"
+    "status status status"
+    "list list list"
+    "list list list"
+    "list list list"
+    " . . add";
+    justify-items: center;
+    align-items: stretch;
+}
+.currently-reading{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    grid-area: cur;
+    display: grid;
+    grid-template-columns: 15% 15% 35% 35%;
+    grid-template-areas:
+    "book book . . "
+    "book book title title"
+    "book book author author" ;
+}
+.status-bar{
+    grid-area: status;
+    height: 100%;
+    width: 100%;
+    background-color: grey;
+}
+.book-list{
+    grid-area: list;
+    height: 100%;
+    width: 100%;
+    background-color: beige;
+}
+.add{
+    grid-area: add;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+}
+.cur-book{
+    grid-area: book;
+    background-color: red;
+}
+.book{
+    height: 40%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 15% 35% 35%;
+    grid-template-areas:
+    "book book . . "
+    "book book title title"
+    "book book author author" ;
+}
