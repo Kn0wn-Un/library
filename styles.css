@@ -1,7 +1,10 @@
+html {
+    min-height: 100%;
+}
 body{
     display: grid;
     grid-template-areas:
-    "header header hearder"
+    "header header header"
     "cont cont cont"
     "cont cont cont" 
     "cont cont cont"
@@ -9,7 +12,10 @@ body{
 }
 h3{
     grid-area: header;
-    justify-self: center;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    background-color: brown;
 }
 h5{
     grid-area: footer;
@@ -55,16 +61,35 @@ h5{
     height: 100%;
     width: 100%;
     background-color: beige;
+    overflow: auto;
 }
 .add{
     grid-area: add;
-    height: 100%;
-    width: 100%;
+    width: 60%;
     background-color: green;
+    border-radius: 100px;
+    justify-self: end;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 25px;
 }
-.cur-book{
+.cur-book, .book-img{
     grid-area: book;
     background-color: red;
+}
+.cur-title, .book-title{
+    grid-area: title;
+    font-size: 50px;
+    align-self: center;
+    padding: 10px;
+    color: red;
+}
+.cur-author, .book-author{
+    grid-area: author;
+    font-size: 30px;
+    align-self: center;
+    padding: 10px;
+    color: red;
 }
 .book{
     height: 40%;
@@ -74,5 +99,31 @@ h5{
     grid-template-areas:
     "book book . . "
     "book book title title"
-    "book book author author" ;
+    "book book author read" ;
+}
+.book-title{
+    font-size: 30px;
+}
+.book-author{
+    font-size: 15px;
+}
+.read{
+    grid-area: read;
+    justify-self: end;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    display: flex;
+    background-color: yellow;
+}
+.tick{
+    height: 25%;
+    width: 70%;
+    position: relative;
+    top: 13px;
+    left: 5px;
+    border-bottom: 5px solid black;
+    border-left: 5px solid black;
+    border-radius: 10%;
+    transform: rotate(-30deg);
 }
