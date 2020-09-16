@@ -146,3 +146,7 @@ h5{
     border-bottom: 5px solid white;
     border-left: 5px solid white; 
 }
+.form{
+    grid-area: list;
+    visibility: hidden;
+}
