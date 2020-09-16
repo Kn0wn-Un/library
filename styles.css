@@ -48,7 +48,8 @@ h5{
     grid-template-areas:
     "book book . . "
     "book book title title"
-    "book book author author" ;
+    "book book author author"
+    "book book page page" ;
 }
 .status-bar{
     grid-area: status;
@@ -65,12 +66,13 @@ h5{
 }
 .add{
     grid-area: add;
+    width: 50px;
+    height: 50px;
     background-color: green;
     border-radius: 100px;
     justify-self: end;
-    padding: 15px;
-    padding-top: 5px;
-    font-size: 25px;
+    text-align: center;
+    font-size: 40px;
 }
 .cur-book, .book-img{
     grid-area: book;
@@ -90,6 +92,13 @@ h5{
     padding: 10px;
     color: red;
 }
+.cur-page, .book-page{
+    grid-area: page;
+    font-size: 20px;
+    align-self: center;
+    padding: 10px;
+    color: red;
+}
 .book{
     height: 40%;
     width: 100%;
@@ -98,13 +107,17 @@ h5{
     grid-template-areas:
     "book book . . "
     "book book title title"
-    "book book author read" ;
+    "book book author read"
+    "book book page page" ;
 }
 .book-title{
     font-size: 30px;
 }
 .book-author{
     font-size: 15px;
+}
+.book-page{
+    font-size: 10px;
 }
 .unread, .read{
     grid-area: read;
@@ -118,7 +131,7 @@ h5{
 .read{
     background-color: green;
 }
-.tick{
+.tick-unread, .tick-read{
     height: 25%;
     width: 70%;
     position: relative;
@@ -128,4 +141,8 @@ h5{
     border-left: 5px solid black;
     border-radius: 10%;
     transform: rotate(-30deg);
+}
+.tick-read{
+    border-bottom: 5px solid white;
+    border-left: 5px solid white; 
 }
