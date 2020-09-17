@@ -3,10 +3,17 @@ let myLibrary = [];
 
 
 function Book(title, author, page, read) {
-    this.title = title;
-    this.author = author;
+    this.cover = capitalize(title).match(/\b(\w)/g).slice(0, 2).join('');
+    this.title = title.toUpperCase();
+    this.author = author.toUpperCase();
     this.page = page;
     this.read = read;
+}
+
+
+
+let capitalize = function(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 
@@ -33,7 +40,7 @@ function addForm(){
     let numberDiv = document.createElement("div");
     numberDiv.innerHTML = "Number of Pages: <br>"
     let numberPage = document.createElement("input");
-    numberPage.type = "text";
+    numberPage.type = "number";
     numberPage.name = "numberPage";
     numberPage.required = true;
     numberDiv.appendChild(numberPage);
@@ -104,9 +111,11 @@ const createBook = ()=>{
 function addBookToLibrary(newBook) {
     let list = document.querySelector(".book-list");
     let book = document.createElement("div");
+    book.id = myLibrary.length;
     book.classList.add("book");
     let img = document.createElement("div");
     img.classList.add("book-img");
+    img.innerHTML = newBook.cover;
     var randomColor = Math.floor(Math.random()*16777215).toString(16);
     img.style.backgroundColor = "#"+randomColor;
     let title = document.createElement("div");
@@ -120,23 +129,98 @@ function addBookToLibrary(newBook) {
     page.classList.add("book-page");
     let read = document.createElement("div");
     let tick = document.createElement("div");
-    if(newBook.read){
-        read.classList.add("read");
-        tick.classList.add("tick-read");
-    }
-    else{
-        read.classList.add("unread");
-        tick.classList.add("tick-unread");
-    }
-    
+    read.addEventListener("click", ()=>{
+        newBook.read = !newBook.read;
+        toggleRead(book.id, newBook);
+        updateCount();
+    });
+    let remove = document.createElement("button");
+    remove.innerHTML = "Remove Book";
+    remove.classList.add("remove");
+    remove.addEventListener("click", ()=>{
+        list.removeChild(document.getElementById(book.id));
+        myLibrary.splice(parseInt(book.id), 1);
+        console.log(myLibrary);
+        updateLatest();
+        updateCount();
+    });
     read.appendChild(tick);
     book.appendChild(img);
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(page);
+    book.appendChild(remove);
     book.appendChild(read);
     list.appendChild(book);
+    toggleRead(book.id, newBook);
+    myLibrary.push(newBook);
+    updateLatest();
+    updateCount();
 }
+
+
+
+const toggleRead = (bookid, book)=>{
+    let temp = document.getElementById(bookid);
+    let read = temp.childNodes[5];
+    let tick = read.childNodes[0]
+    console.log(tick);
+    if(book.read){
+        read.classList.remove("unread");
+        tick.classList.remove("tick-unread");
+        read.classList.add("read");
+        tick.classList.add("tick-read");
+    }
+    else{
+        read.classList.remove("read");
+        tick.classList.remove("tick-read");
+        read.classList.add("unread");
+        tick.classList.add("tick-unread");
+    }
+};
+
+
+
+const updateLatest = ()=>{
+    let img = document.querySelector(".cur-book");
+    let title = document.querySelector(".cur-title");
+    let author = document.querySelector(".cur-author");
+    let page = document.querySelector(".cur-page"); 
+    if(!myLibrary.length)
+    {
+        document.querySelector(".currently-reading")
+        .style.visibility = "hidden";
+        img.textContent = "";
+        title.innerHTML = "";
+        author.innerHTML = "";
+        page.innerHTML = "";
+        return;
+    }
+    document.querySelector(".currently-reading")
+        .style.visibility = "visible";
+    let book = myLibrary[myLibrary.length-1];
+    img.innerHTML = book.cover;
+    title.innerHTML = book.title;
+    author.innerHTML = book.author;
+    page.innerHTML = book.page;
+};
+
+
+
+const updateCount = function(){
+    let div = document.createElement("div");
+    if(!myLibrary.length){
+        document.querySelector(".status-bar").innerHTML = "No Books Added";
+        return;
+    }
+    let readCtr = 0;
+    for(let i = 0; i < myLibrary.length; i++)
+        if(myLibrary[i].read)
+            readCtr++;
+    div.innerHTML = "READ: " + readCtr + "/" + (myLibrary.length);
+    document.querySelector(".status-bar").innerHTML = div.outerHTML;
+    console.log(readCtr);
+};
 
 
 
