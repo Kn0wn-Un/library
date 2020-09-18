@@ -3,19 +3,22 @@ html {
 }
 body{
     display: grid;
+    height: 100%;
     grid-template-areas:
     "header header header"
-    ". title ."
+    "title . ."
     "cont cont cont"
     "cont cont cont" 
     "cont cont cont"
     "footer footer footer";
+    background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    background-color: #cccccc;
+    color: ivory;
+    margin-left: 100px;
 }
 h1{
     grid-area: header;
     width: 100%;
-    text-align: center;
-    background-color: brown;
 }
 h3{
     grid-area: title;
@@ -27,9 +30,8 @@ h5{
 }
 .book-shelf{
     grid-area: cont;
-    justify-self: center;
-    height: 750px;
-    width: 50%;
+    width: 75%;
+    height: 100%;
     display: grid;
     grid-template-rows: 40% 10% 15% 15% 15% 5% ;
     grid-template-areas: 
@@ -38,96 +40,102 @@ h5{
     "list list list"
     "list list list"
     "list list list"
-    " . . add";
-    justify-items: center;
-    align-items: stretch;
+    ". . .";
+    background-color: rgba(0, 0, 0, 0.6);
 }
 .currently-reading{
+    padding: 10px;
     height: 100%;
-    width: 100%;
     grid-area: cur;
     display: grid;
     grid-template-columns: 15% 15% 35% 35%;
     grid-template-areas:
-    "book book . . "
-    "book book title title"
-    "book book author author"
-    "book book page page" ;
+    "book . . "
+    "book title title"
+    "book author author"
+    "book page page" ;
 }
 .status-bar{
-    grid-area: status;
-    font-size: 35px;
-    display: flex;
-    text-align: right;
-    flex-direction: column;
-    justify-content: center;
     height: 100%;
-    width: 100%;
-    background-color: grey;
+    margin: 10px;
+    grid-area: status;
+    font-size: 25px;
+    display: grid;
+    grid-template-columns: 25% 25% 50%;
+    grid-template-areas: "count .  add";
+    background-color: rgba(0, 0, 0, 0.8);
+    align-content: center;
 }
 .book-list{
+    margin: 10px;
     grid-area: list;
     height: 100%;
-    width: 100%;
-    overflow: auto;
+    overflow-y: auto;
 }
 .add{
     grid-area: add;
-    width: 50px;
-    height: 50px;
+    width: fit-content;
+    padding: 10px;
     background-color: green;
     border-radius: 100px;
     justify-self: end;
     text-align: center;
-    font-size: 40px;
+    font-size: 20px;
 }
 .cur-book, .book-img{
     grid-area: book;
-    font-size: 100px;
+    font-size: 50px;
     background-color: red;
 }
 .cur-title, .book-title{
     grid-area: title;
-    font-size: 50px;
+    font-size: 30px;
     align-self: center;
     padding: 10px;
 }
 .cur-author, .book-author{
     grid-area: author;
-    font-size: 30px;
+    font-size: 20px;
     align-self: center;
     padding: 10px;
 }
 .cur-page, .book-page{
     grid-area: page;
-    font-size: 20px;
+    font-size: 18px;
     align-self: center;
     padding: 10px;
 }
 .book{
-    height: 70%;
-    width: 100%;
+    padding: 20px;
     display: grid;
     grid-template-columns: 10% 10% 40% 40%;
     grid-template-areas:
-    "book book . . "
-    "book book title title"
-    "book book author remove"
-    "book book page read" ;
+    "book . . "
+    "book title title"
+    "book author remove"
+    "book page read";
+}
+.book-img{
+    height: 100%;
 }
 .book-title{
-    font-size: 50px;
-}
-.book-author{
-    font-size: 30px;
-}
-.book-page{
     font-size: 20px;
 }
+.book-author{
+    font-size: 17px;
+}   
+.book-page{
+    font-size: 15px;
+}
 .remove{
-    height: auto;
-    width: auto;
+    justify-self: end;
+    width: fit-content;
+    height: 20px;
     padding: 5px;
+    background-color: red;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 15px;
     grid-area: remove;
 }
 .unread, .read{
@@ -159,5 +167,7 @@ h5{
 }
 .form{
     grid-area: list;
+    font-size: 20px;
+    justify-self: center;
     visibility: hidden;
 }

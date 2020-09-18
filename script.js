@@ -134,13 +134,13 @@ function addBookToLibrary(newBook) {
         toggleRead(book.id, newBook);
         updateCount();
     });
-    let remove = document.createElement("button");
+    let remove = document.createElement("div");
     remove.innerHTML = "Remove Book";
     remove.classList.add("remove");
     remove.addEventListener("click", ()=>{
         list.removeChild(document.getElementById(book.id));
         myLibrary.splice(parseInt(book.id), 1);
-        console.log(myLibrary);
+        changeId();
         updateLatest();
         updateCount();
     });
@@ -164,7 +164,6 @@ const toggleRead = (bookid, book)=>{
     let temp = document.getElementById(bookid);
     let read = temp.childNodes[5];
     let tick = read.childNodes[0]
-    console.log(tick);
     if(book.read){
         read.classList.remove("unread");
         tick.classList.remove("tick-unread");
@@ -188,12 +187,7 @@ const updateLatest = ()=>{
     let page = document.querySelector(".cur-page"); 
     if(!myLibrary.length)
     {
-        document.querySelector(".currently-reading")
-        .style.visibility = "hidden";
-        img.textContent = "";
-        title.innerHTML = "";
-        author.innerHTML = "";
-        page.innerHTML = "";
+        addEx();
         return;
     }
     document.querySelector(".currently-reading")
@@ -207,8 +201,26 @@ const updateLatest = ()=>{
 
 
 
+const changeId = ()=>{
+    let books = document.querySelectorAll(".book");
+    console.log(books);
+    for(i = 0; i < books.length; i++){
+        for(j = 0; j < myLibrary.length; j++){
+            if(books[i].childNodes[1].innerHTML === myLibrary[j].title){
+                books[i].id = j;
+                console.log(books[i].id);
+            }
+        }
+    }
+};
+
+
+
 const updateCount = function(){
     let div = document.createElement("div");
+    let add = document.createElement("div");
+    add.classList.add("add");
+    add.innerHTML = "Add new book";
     if(!myLibrary.length){
         document.querySelector(".status-bar").innerHTML = "No Books Added";
         return;
@@ -218,16 +230,27 @@ const updateCount = function(){
         if(myLibrary[i].read)
             readCtr++;
     div.innerHTML = "READ: " + readCtr + "/" + (myLibrary.length);
-    document.querySelector(".status-bar").innerHTML = div.outerHTML;
-    console.log(readCtr);
+    document.querySelector(".status-bar").innerHTML = div.outerHTML + add.outerHTML;
+    addClick();
 };
 
 
+const addClick = ()=>{
+    let addBtn = document.querySelector(".add");
+    console.log(addBtn);
+    addBtn.addEventListener("click", ()=>{
+        document.querySelector(".book-list").style.visibility = "hidden";
+        document.querySelector(".add").style.visibility = "hidden";
+        document.querySelector(".form").style.visibility = "visible";
+        addForm();
+    });
+}
 
-const addBtn = document.querySelector(".add");
-addBtn.addEventListener("click", ()=>{
-    document.querySelector(".book-list").style.visibility = "hidden";
-    document.querySelector(".add").style.visibility = "hidden";
-    document.querySelector(".form").style.visibility = "visible";
-    addForm();
-});
+
+
+const addEx = ()=>{
+    let newBook = new Book("Harry Potter and the Sorcerer's Stone (Example)", 
+    "J.K. Rowling", 309, true);
+    addBookToLibrary(newBook);
+};
+addEx();
