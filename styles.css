@@ -31,16 +31,16 @@ h5{
 .book-shelf{
     grid-area: cont;
     width: 75%;
-    height: 100%;
+    max-height: 100%;
     display: grid;
-    grid-template-rows: 40% 10% 15% 15% 15% 5% ;
+    grid-template-rows: 300px 100px 150px 150px 150px 50px ;
     grid-template-areas: 
     "cur cur cur"
     "status status status"
     "list list list"
     "list list list"
     "list list list"
-    ". . .";
+    ". . ."; 
     background-color: rgba(0, 0, 0, 0.6);
 }
 .currently-reading{
@@ -57,20 +57,20 @@ h5{
 }
 .status-bar{
     height: 100%;
-    margin: 10px;
     grid-area: status;
     font-size: 25px;
     display: grid;
     grid-template-columns: 25% 25% 50%;
     grid-template-areas: "count .  add";
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     align-content: center;
+    position: relative;
+    top: 10px;
 }
 .book-list{
     margin: 10px;
     grid-area: list;
-    height: 100%;
-    overflow-y: auto;
+    overflow: auto;
 }
 .add{
     grid-area: add;
@@ -83,6 +83,7 @@ h5{
     font-size: 20px;
 }
 .cur-book, .book-img{
+    box-shadow: 5px 5px #888888;
     grid-area: book;
     font-size: 50px;
     background-color: red;
@@ -107,6 +108,7 @@ h5{
 }
 .book{
     padding: 20px;
+    height: 200px;
     display: grid;
     grid-template-columns: 10% 10% 40% 40%;
     grid-template-areas:
@@ -169,5 +171,6 @@ h5{
     grid-area: list;
     font-size: 20px;
     justify-self: center;
+    align-self: center;
     visibility: hidden;
 }

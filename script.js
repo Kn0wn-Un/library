@@ -92,6 +92,7 @@ function addForm(){
         document.querySelector(".form").innerHTML = "";
         document.querySelector(".form").style.visibility = "hidden";
     });
+    inputArea.innerHTML = "<div>Input Book Details</div>";
     inputArea.appendChild(form);
 }
 
@@ -218,6 +219,7 @@ const changeId = ()=>{
 
 const updateCount = function(){
     let div = document.createElement("div");
+    div.style.alignSelf = "end";
     let add = document.createElement("div");
     add.classList.add("add");
     add.innerHTML = "Add new book";
