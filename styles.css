@@ -11,10 +11,11 @@ body{
     "cont cont cont" 
     "cont cont cont"
     "footer footer footer";
-    background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    background-image: url("https://wallpaperaccess.com/full/2862101.jpg");
     background-color: #cccccc;
     color: ivory;
     margin-left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 h1{
     grid-area: header;
@@ -25,6 +26,7 @@ h3{
     width: 100%;
 }
 h5{
+    font-size: 25px;
     grid-area: footer;
     justify-self: center;
 }
@@ -173,4 +175,7 @@ h5{
     justify-self: center;
     align-self: center;
     visibility: hidden;
+}
+a{
+    color: ivory;
 }
