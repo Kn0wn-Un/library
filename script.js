@@ -1,7 +1,9 @@
+//array of book object
 let myLibrary = [];
 
 
 
+//Book constructor
 function Book(title, author, page, read) {
     this.cover = capitalize(title).match(/\b(\w)/g).slice(0, 2).join('');
     this.title = title.toUpperCase();
@@ -12,12 +14,14 @@ function Book(title, author, page, read) {
 
 
 
+//function to capitalise book titles
 let capitalize = function(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 
 
+//function to add form for user input
 function addForm(){
     let inputArea = document.querySelector(".form");
 
@@ -98,6 +102,7 @@ function addForm(){
 
 
 
+//adds book to user list on user input
 const createBook = ()=>{
     let bookName = document.forms["myForm"]["bookName"].value;
     let authorName = document.forms["myForm"]["authorName"].value;
@@ -110,6 +115,7 @@ const createBook = ()=>{
 
 
 
+//function to create book divs in website
 function addBookToLibrary() {
     let list = document.querySelector(".book-list");
     list.innerHTML = "";
@@ -118,20 +124,25 @@ function addBookToLibrary() {
         let book = document.createElement("div");
         book.id = i;
         book.classList.add("book");
+
         let img = document.createElement("div");
         img.classList.add("book-img");
         img.innerHTML = newBook.cover;
         var randomColor = Math.floor(Math.random()*16777215).toString(16);
         img.style.backgroundColor = "#"+randomColor;
+
         let title = document.createElement("div");
         title.innerHTML = newBook.title;
         title.classList.add("book-title");
+
         let author = document.createElement("div");
         author.innerHTML = newBook.author;
         author.classList.add("book-author");
+
         let page = document.createElement("div");
         page.innerHTML = newBook.page;
         page.classList.add("book-page");
+
         let read = document.createElement("div");
         let tick = document.createElement("div");
         read.addEventListener("click", ()=>{
@@ -139,6 +150,7 @@ function addBookToLibrary() {
             toggleRead(book.id, newBook);
             updateCount();
         });
+
         let remove = document.createElement("div");
         remove.innerHTML = "Remove Book";
         remove.classList.add("remove");
@@ -149,6 +161,7 @@ function addBookToLibrary() {
             updateLatest();
             updateCount();
         });
+
         read.appendChild(tick);
         book.appendChild(img);
         book.appendChild(title);
@@ -165,6 +178,7 @@ function addBookToLibrary() {
 
 
 
+//function to change color of read button
 const toggleRead = (bookid, book)=>{
     let temp = document.getElementById(bookid);
     let read = temp.childNodes[5];
@@ -185,6 +199,7 @@ const toggleRead = (bookid, book)=>{
 
 
 
+//function to update the latest book div
 const updateLatest = ()=>{
     let img = document.querySelector(".cur-book");
     let title = document.querySelector(".cur-title");
@@ -206,6 +221,7 @@ const updateLatest = ()=>{
 
 
 
+//function to change id of books when books are deleted or added
 const changeId = ()=>{
     let books = document.querySelectorAll(".book");
     for(i = 0; i < books.length; i++){
@@ -219,6 +235,7 @@ const changeId = ()=>{
 
 
 
+//function to update the number of read books
 const updateCount = function(){
     let div = document.createElement("div");
     div.style.alignSelf = "end";
@@ -240,6 +257,8 @@ const updateCount = function(){
 };
 
 
+
+//function to handle add new book button
 const addClick = ()=>{
     let addBtn = document.querySelector(".add");
     addBtn.addEventListener("click", ()=>{
@@ -252,6 +271,7 @@ const addClick = ()=>{
 
 
 
+//function to add example book
 const addEx = ()=>{
     let newBook = new Book("Harry Potter and the Sorcerer's Stone (Example)", 
     "J.K. Rowling", 309, true);
@@ -261,6 +281,7 @@ const addEx = ()=>{
 
 
 
+//function to store books to local storage
 function addEntry() {
     let tempLib = []
     for(let i = 0; i < myLibrary.length; i++)
@@ -270,6 +291,7 @@ function addEntry() {
 
 
 
+//fuction to get books from local storage
 function getBooks() {
     let x = JSON.parse(localStorage.getItem("myLibrary"));
     for(let i = 0; i < x.length; i++){
@@ -278,5 +300,8 @@ function getBooks() {
     addBookToLibrary();
 };
 
+
+
+//check if local storage already exists
 if(localStorage.getItem("myLibrary")) getBooks();
 else addEx();
