@@ -15,6 +15,8 @@ The book will be added to your list, if unread you can change the status after r
 
 3. Removing Books by clicking on the ***Remove Book button*** which is there next to the book you want to remove.
 
+4. Local Storage added, your Books will be saved in your local device and will not be erased on refresh or if website is closed and opened again.
+
 
 ### View in Browser
 
