@@ -18,4 +18,4 @@ The book will be added to your list, if unread you can change the status after r
 
 ### View in Browser
 
-[Library]()
+[Library](https://kn0wn-un.github.io/library/)
