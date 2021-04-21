@@ -250,19 +250,44 @@ const addClick = () => {
 	});
 };
 
-//function to store books to storage
+//function to add example book
+const addEx = () => {
+	let newBook = new Book(
+		"Harry Potter and the Sorcerer's Stone (Example)",
+		'J.K. Rowling',
+		309,
+		true
+	);
+	myLibrary.push(newBook);
+	addBookToLibrary();
+};
+
+//function to store books to local storage
 async function addEntry() {
-	libObj.books = myLibrary;
+	let tempLib = [];
+	for (let i = 0; i < myLibrary.length; i++)
+		tempLib.push(JSON.stringify(myLibrary[i]));
+	localStorage.setItem('myLibrary', JSON.stringify(tempLib));
+	libObj.books = myLibrary.map((obj) => {
+		return Object.assign({}, obj);
+	});
 	let db = firebase.firestore().collection('library');
 	await db.doc('books').set({ libObj });
 }
-
-//function to get books from storage
+//fuction to get books from local storage
+function getBooks() {
+	let x = JSON.parse(localStorage.getItem('myLibrary'));
+	for (let i = 0; i < x.length; i++) {
+		myLibrary[i] = JSON.parse(x[i]);
+	}
+	addBookToLibrary();
+}
 async function retrieveData() {
 	let db = firebase.firestore().collection('library').doc('books');
 	const doc = await db.get();
 	if (!doc.exists) {
 		alert('some error occured!');
+		addEx();
 	} else {
 		myLibrary = doc.data().libObj.books;
 		addBookToLibrary();
