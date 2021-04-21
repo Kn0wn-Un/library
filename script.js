@@ -1,3 +1,14 @@
+var firebaseConfig = {
+	apiKey: config.APIKEY,
+	authDomain: config.PROJECTID + '.firebaseapp.com',
+	projectId: config.PROJECTID,
+	storageBucket: config.PROJECTID + '.appspot.com',
+	messagingSenderId: config.SENDERID,
+	appId: config.APPID,
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 //array of book object
 let myLibrary = [];
 
@@ -291,7 +302,6 @@ async function retrieveData() {
 	} else {
 		myLibrary = doc.data().libObj.books;
 		addBookToLibrary();
-		console.log(myLibrary);
 	}
 }
 
