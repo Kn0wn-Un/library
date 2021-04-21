@@ -19,6 +19,34 @@
             <div class="form"><br></div>
         </div>
         <h5>View code in <a href="https://github.com/Kn0wn-Un/library">GitHub</a></h5>
-        <script async src="script.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDSMPFgUQsRNix-ceCuRdrFanw9JzZA7i4",
+            authDomain: "library-9bf7b.firebaseapp.com",
+            projectId: "library-9bf7b",
+            storageBucket: "library-9bf7b.appspot.com",
+            messagingSenderId: "263711237733",
+            appId: "1:263711237733:web:a55a4daaeefed5032d488c"
+        };
+        //var firebaseConfig = {
+        //    apiKey: "API_KEY",
+        //    authDomain: "PROJECT_ID.firebaseapp.com",
+        //    databaseURL: "https://PROJECT_ID.firebaseio.com",
+        //    projectId: "PROJECT_ID",
+        //    storageBucket: "PROJECT_ID.appspot.com",
+        //    messagingSenderId: "SENDER_ID",
+        //    appId: "APP_ID",
+        //};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        </script>
+        <script src="script.js"></script>
     </body>
 </html>
